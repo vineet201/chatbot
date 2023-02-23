@@ -233,4 +233,12 @@ export const responses = {
 'What is a permutation?': 'A permutation is an arrangement of objects in a specific order.',
 'What is a combination?': 'A combination is a selection of objects from a set without regard to their order.',
 
+
+
+
+
+// without the and what
+
+
+
 };
