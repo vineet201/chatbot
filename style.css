@@ -78,7 +78,7 @@ a {
 }
 
 .user-message {
-  background-color: #5a5aff;
+  background-color: #6c6ef3;
   color: #ffffff;
   align-self: flex-start;
 }
@@ -166,3 +166,32 @@ fill: #ffffff;
 width: 2rem;
 height: 2rem;
 }
+
+
+
+/* Added avatar in the chatMessage */
+.chat-entry.bot-message {
+  display: flex;
+  align-items: center;
+}
+
+.chat-entry.bot-message img {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+.chat-entry.user-message {
+  display: flex;
+  align-items: center;
+}
+
+.chat-entry.user-message img {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+

@@ -1,3 +1,5 @@
+import { responses } from './response.js';
+
 const form = document.querySelector('form');
 const input = document.querySelector('input[type="text"]');
 const chatLog = document.querySelector('#chat-log');
@@ -10,17 +12,23 @@ form.addEventListener('submit', (event) => {
   // Add user message to the chat log
   const userEntry = document.createElement('div');
   userEntry.classList.add('chat-entry', 'user-message');
-  userEntry.textContent = userMessage;
+  userEntry.innerHTML = `
+    <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png" alt="User Avatar">
+    <div class="user-message-text">${userMessage}</div>
+  `;
   chatLog.appendChild(userEntry);
 
-  // Generate bot response
-  const botMessage = getBotResponse(userMessage);
-
-  // Add bot message to the chat log after a delay
+  // Generate bot response after a delay
   setTimeout(() => {
+    const botMessage = getBotResponse(userMessage);
+
+    // Add bot message to the chat log
     const botEntry = document.createElement('div');
     botEntry.classList.add('chat-entry', 'bot-message');
-    botEntry.textContent = botMessage;
+    botEntry.innerHTML = `
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png" alt="Bot Avatar">
+      <div class="bot-message-text">${botMessage}</div>
+    `;
     chatLog.appendChild(botEntry);
 
     // Scroll to the bottom of the chat log
@@ -29,19 +37,10 @@ form.addEventListener('submit', (event) => {
 });
 
 function getBotResponse(userMessage) {
-  // Define a dictionary of responses for various user inputs
-  const responses = {
-    'hello': 'Hi there! How can I assist you?',
-    'hi': 'Hello! How can I help you today?',
-    'hey': 'Hey there! What can I do for you?',
-    'how are you': 'I\'m just a chatbot, but thanks for asking!',
-    'help': 'What can I help you with?',
-    'see you': 'Take care! See you soon.'
-  };
-
   // Check if user input matches any of the keys in the responses dictionary
   for (let key in responses) {
-    if (userMessage.toLowerCase().includes(key)) {
+    const regex = new RegExp(key, 'i');
+    if (regex.test(userMessage)) {
       return responses[key];
     }
   }
